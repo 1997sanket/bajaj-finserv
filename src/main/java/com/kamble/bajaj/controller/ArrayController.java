@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -35,7 +37,22 @@ public class ArrayController {
     @PostMapping("/bfhl")
     public Response create(@RequestBody RequestDTO requestDTO) {
 
-        Response response = arrayService.getResponse(requestDTO.getData());
+        Response response = null;
+        System.out.println("request dto : " + requestDTO);
+
+        try {
+            response = arrayService.getResponse(requestDTO.getData());
+        } catch (Exception e) {
+            response = new Response();
+
+            //Creating our response object
+            response.setIs_success(false);
+            response.setUserId("sonal_kamble_24091999");
+            response.setEmailId("kamblesonal893@gmail.com");
+            response.setRollNumber("PD0412");
+            response.setNumbers(Collections.emptyList());
+            response.setAlphabets(Collections.emptyList());
+        }
 
         return response;
     }
