@@ -50,7 +50,6 @@ public class ArrayServiceImpl implements  ArrayService{
 
                     //if string
                     if(i instanceof String) {
-                        System.out.println(i);
                         String x = (String)i;
 
                         try {
@@ -68,7 +67,7 @@ public class ArrayServiceImpl implements  ArrayService{
                 collect(Collectors.toList());
 
         //Creating our response object
-        response.setStatus(true);
+        response.setIs_success(true);
         response.setUserId("sonal_kamble_24091999");
         response.setEmailId("kamblesonal893@gmail.com");
         response.setRollNumber("PD0412");

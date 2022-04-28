@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 public class Response {
 
-    private Boolean status;
+    private Boolean is_success;
     private String userId;
     private String emailId;
     private String rollNumber;
