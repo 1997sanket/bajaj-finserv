@@ -1,5 +1,6 @@
 package com.kamble.bajaj.controller;
 
+import com.kamble.bajaj.model.RequestDTO;
 import com.kamble.bajaj.model.Response;
 import com.kamble.bajaj.service.ArrayService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,18 @@ public class ArrayController {
     }
 
     //Required endpoint
-    @PostMapping("/bfhl")
+    @PostMapping("/")
     public Response create(@RequestBody List<Object> input) {
 
         Response response = arrayService.getResponse(input);
+
+        return response;
+    }
+
+    @PostMapping("/bfhl")
+    public Response create(@RequestBody RequestDTO requestDTO) {
+
+        Response response = arrayService.getResponse(requestDTO.getData());
 
         return response;
     }
