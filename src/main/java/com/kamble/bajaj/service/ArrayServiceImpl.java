@@ -16,14 +16,55 @@ public class ArrayServiceImpl implements  ArrayService{
 
         //Extracting Numbers from the given array
         List<Integer> numbers = input.stream().
-                filter(i-> i instanceof Number).
-                map(i-> (Integer)i).
+                filter(i-> {
+                    if(i instanceof Number) return true;
+
+                    if(i instanceof String) {
+                        String x = (String)i;
+
+                        try {
+                            Integer.parseInt(x);
+                            return true;
+                        } catch(Exception e) {
+                            return false;
+                        }
+
+                    }
+                    return false;
+                }).
+                map(i-> {
+                    if(i instanceof Number) {
+                        return (Integer)i;
+                    } else {
+                        return Integer.parseInt(i.toString());
+                    }
+                }).
                 collect(Collectors.toList());
 
         //Exracting Characters from the given array
         List<Character> alphabets = input.stream().
-                filter(i-> i instanceof String).
-                map(i->  ((String) i).charAt(0)).
+                filter(i-> {
+
+                    //if number
+                    if(i instanceof Number) return false;
+
+                    //if string
+                    if(i instanceof String) {
+                        System.out.println(i);
+                        String x = (String)i;
+
+                        try {
+                            Integer.parseInt(x);
+
+                            return false;
+                        } catch(Exception e) {
+                            return true;
+                        }
+
+                    }
+                    return false;
+                }).
+                map(i-> ((String) i).charAt(0)).
                 collect(Collectors.toList());
 
         //Creating our response object
